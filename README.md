@@ -1,4 +1,4 @@
-# takeways
+# Awesome SGLang
 
 Make [SGLang](https://github.com/sgl-project/sglang) go brrr
 
