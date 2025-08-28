@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: lws-router
+  name: lws-router
+  namespace: aiservice 
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: lws-router
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: lws-router
+      name: lws-router
+      namespace: aiservice 
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        - >
+          python3 -m sglang_router.launch_router
+          --host 0.0.0.0
+          --port 8080
+          --pd-disaggregation
+          --policy random
+          --service-discovery
+          --service-discovery-namespace aiservice 
+          --service-discovery-port 30000
+          --prefill-selector pd_role=prefill 
+          --decode-selector pd_role=decode 
+          --max-payload-size 2147483648
+          --worker-startup-timeout-secs 1200
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INFERENCESERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['ome.io/inferenceservice']
+                #        image: sealos.hub:5000/sglang:v0.5.1.post1-cu126-fixip
+        image: sealos.hub:5000/sgl-router:dev
+        imagePullPolicy: IfNotPresent
+        name: router
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "10"
+            memory: 20Gi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    component: external-service
+  name:  router-service 
+  namespace: aiservice  
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 31080
+  selector:
+    app: lws-router 
+  sessionAffinity: None
+  type: NodePort 
