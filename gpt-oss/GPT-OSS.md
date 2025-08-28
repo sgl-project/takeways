@@ -76,8 +76,6 @@
     ```
     
 
-## Advanced Usage:
-
 ## Responses API & Built-in Tools
 
 Please refer to https://docs.sglang.ai/basic_usage/gpt_oss.html#responses-api-built-in-tools
@@ -106,7 +104,7 @@ cd gpt-oss
 pip install -e .
 ```
 
-1. Evaluation Command
+2. Evaluation Command
 
 > You can choose a reasoning effort level from `low, medium, high`
 
