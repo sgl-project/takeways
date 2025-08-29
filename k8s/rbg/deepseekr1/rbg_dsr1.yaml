@@ -517,3 +517,22 @@ spec:
                   fieldRef:
                     apiVersion: v1
                     fieldPath: metadata.namespace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: deepseek-rbg-deploy
+  name: deepseek-rbg-deploy
+  namespace: aiservice
+spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30080
+  selector:
+    rolebasedgroup.workloads.x-k8s.io/name: deepseek-rbg-deploy
+    rolebasedgroup.workloads.x-k8s.io/role: router
+  type: NodePort
