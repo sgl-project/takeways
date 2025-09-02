@@ -11,6 +11,10 @@ The docker images are available on Docker Hub at [lmsysorg/sglang](https://hub.d
 
 {% code overflow="wrap" %}
 ```bash
+# Pull latest image
+# https://hub.docker.com/r/lmsysorg/sglang/tags
+docker pull lmsysorg/sglang:latest
+
 docker run --gpus all \
     --shm-size 32g \
     -p 30000:30000 \
@@ -18,7 +22,7 @@ docker run --gpus all \
     --env "HF_TOKEN=<secret>" \
     --ipc=host \
     lmsysorg/sglang:latest \
-    python3 -m sglang.launch_server --model-path meta-llama/Llama-3.1-8B-Instruct --host 0.0.0.0 --port 30000
+    /bin/bash
 ```
 {% endcode %}
 

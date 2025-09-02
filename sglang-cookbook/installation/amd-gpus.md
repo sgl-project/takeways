@@ -110,26 +110,6 @@ With your AMD system properly configured and SGLang installed, you can now fully
 
 ## Examples
 
-### Running DeepSeek-V3
-
-The only difference when running DeepSeek-V3 is in how you start the server. Here’s an example command:
-
-```
-drun -p 30000:30000 \
-    -v ~/.cache/huggingface:/root/.cache/huggingface \
-    --ipc=host \
-    --env "HF_TOKEN=<secret>" \
-    sglang_image \
-    python3 -m sglang.launch_server \
-    --model-path deepseek-ai/DeepSeek-V3 \ # <- here
-    --tp 8 \
-    --trust-remote-code \
-    --host 0.0.0.0 \
-    --port 30000
-```
-
-[Running DeepSeek-R1 on a single NDv5 MI300X VM](https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/running-deepseek-r1-on-a-single-ndv5-mi300x-vm/4372726) could also be a good reference.
-
 ### Running Llama3.1
 
 Running Llama3.1 is nearly identical to running DeepSeek-V3. The only difference is in the model specified when starting the server, shown by the following example command:

@@ -137,36 +137,3 @@ python -m sglang.bench_serving -h
 ```
 
 Additionally, the requests can be formed with [OpenAI Completions API](https://docs.sglang.ai/backend/openai_api_completions.html) and sent via the command line (e.g. using `curl`) or via your own script.
-
-## Example: Running DeepSeek-R1
-
-An example command to launch service for W8A8 DeepSeek-R1 on a Xeon® 6980P server
-
-```
-python -m sglang.launch_server                 \
-    --model meituan/DeepSeek-R1-Channel-INT8   \
-    --trust-remote-code                        \
-    --disable-overlap-schedule                 \
-    --device cpu                               \
-    --quantization w8a8_int8                   \
-    --host 0.0.0.0                             \
-    --mem-fraction-static 0.8                  \
-    --max-total-token 65536                    \
-    --tp 6
-```
-
-Similarly, an example command to launch service for FP8 DeepSeek-R1 would be
-
-```
-python -m sglang.launch_server                 \
-    --model deepseek-ai/DeepSeek-R1            \
-    --trust-remote-code                        \
-    --disable-overlap-schedule                 \
-    --device cpu                               \
-    --host 0.0.0.0                             \
-    --mem-fraction-static 0.8                  \
-    --max-total-token 65536                    \
-    --tp 6
-```
-
-Then you can test with `bench_serving` command or construct your own command or script following [the benchmarking example](https://docs.sglang.ai/platforms/cpu_server.html#benchmarking-with-requests).
