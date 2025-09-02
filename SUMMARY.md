@@ -11,6 +11,7 @@
   * [Send your first request](sglang-cookbook/send-your-first-request.md)
   * [DeepSeek V3.1/V3/R1](sglang-cookbook/deepseek-v3.1-v3-r1/README.md)
     * [Usage Guide](sglang-cookbook/deepseek-v3.1-v3-r1/usage-guide.md)
+  * [Meta Llama](sglang-cookbook/meta-llama.md)
   * [GPT-OSS](sglang-cookbook/gpt-oss/README.md)
     * [Usage Guide](sglang-cookbook/gpt-oss/usage-guide.md)
 * [Production Deployment](k8s/README.md)

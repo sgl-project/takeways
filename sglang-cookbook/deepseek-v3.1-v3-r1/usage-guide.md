@@ -73,7 +73,7 @@ If you are using RDMA, please note that:
 1. `--network host` and `--privileged` are required by RDMA. If you don't need RDMA, you can remove them.
 2. You may need to set `NCCL_IB_GID_INDEX` if you are using RoCE, for example: `export NCCL_IB_GID_INDEX=3`.
 
-### <mark style="background-color:green;">Serving with 2 x 8 x H20</mark>
+### <mark style="background-color:green;">Serving with 2 x 8 x H20/H100/H200</mark>
 
 For example, there are two H20 nodes, each with 8 GPUs. The first node's IP is `10.0.0.1`, and the second node's IP is `10.0.0.2`. Please **use the first node's IP** for both commands.
 
