@@ -3,6 +3,7 @@
 * [Awesome SGLang](README.md)
 * [SGLang Cookbook](sglang-cookbook/README.md)
   * [Installation](sglang-cookbook/installation/README.md)
+    * [NVIDIA H-Series, A-Series, and RTX GPUs](sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus.md)
     * [NVIDIA Blackwell GPUs](sglang-cookbook/installation/nvidia-blackwell-gpus.md)
     * [AMD GPUs](sglang-cookbook/installation/amd-gpus.md)
     * [Intel Xeon CPUs](sglang-cookbook/installation/intel-xeon-cpus.md)
