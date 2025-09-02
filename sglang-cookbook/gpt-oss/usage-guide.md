@@ -2,69 +2,51 @@
 
 ### <mark style="background-color:green;">Serving with 1 x H100/H200</mark>
 
+1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+2. Serve the model
+
 {% code overflow="wrap" %}
 ```bash
 # gpt-oss-20b
-docker run -it --gpus all \
-  --shm-size 32g \
-  --network=host \
-  -v ~/.cache/huggingface:/root/.cache/huggingface \
-  --env "HF_TOKEN=<secret>" \
-  --privileged \
-  --ipc=host \
-  --name sglang \
-  lmsysorg/sglang:latest \
-  python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
+python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
 ```
 {% endcode %}
 
 {% code overflow="wrap" %}
 ```bash
 # gpt-oss-120b
-docker run -it --gpus all \
-  --shm-size 32g \
-  --network=host \
-  -v ~/.cache/huggingface:/root/.cache/huggingface \
-  --env "HF_TOKEN=<secret>" \
-  --privileged \
-  --ipc=host \
-  --name sglang \
-  lmsysorg/sglang:latest \
-  python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --mem-fraction-static 0.95
+python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --mem-fraction-static 0.95
+```
+{% endcode %}
+
+### <mark style="background-color:green;">Serving with 2 x H100</mark>
+
+1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+2. Serve the model
+
+{% code overflow="wrap" %}
+```bash
+# gpt-oss-120b
+python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --tp 2
 ```
 {% endcode %}
 
 ### <mark style="background-color:green;">Serving with 1 x B200</mark>
 
+* Install SGLang following [the instruction](../installation/nvidia-blackwell-gpus.md)
+* Serve the model
+
 {% code overflow="wrap" %}
 ```bash
 # gpt-oss-20b
-docker run -it --gpus all \
-  --shm-size 32g \
-  --network=host \
-  -v ~/.cache/huggingface:/root/.cache/huggingface \
-  --env "HF_TOKEN=<secret>" \
-  --privileged \
-  --ipc=host \
-  --name sglang \
-  lmsysorg/sglang:blackwell \
-  python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
+python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
 ```
 {% endcode %}
 
 {% code overflow="wrap" %}
 ```bash
 # gpt-oss-120b
-docker run -it --gpus all \
-  --shm-size 32g \
-  --network=host \
-  -v ~/.cache/huggingface:/root/.cache/huggingface \
-  --env "HF_TOKEN=<secret>" \
-  --privileged \
-  --ipc=host \
-  --name sglang \
-  lmsysorg/sglang:blackwell \
-  python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --mem-fraction-static 0.95
+python3 -m sglang.launch_server --model-path openai/gpt-oss-120b
 ```
 {% endcode %}
 
