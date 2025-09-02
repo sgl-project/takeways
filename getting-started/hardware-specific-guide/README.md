@@ -1,2 +1,0 @@
-# Hardware specific guide
-

@@ -2,46 +2,25 @@
 
 You can install SGLang on your machine using one of the methods below. For production usage, please check out.
 
-This page primarily applies to common NVIDIA GPU platforms. For other or newer platforms, please refer to the dedicated pages for&#x20;
+This page primarily applies to common NVIDIA GPU platforms. For other or newer platforms, please refer to the dedicated pages for
 
-* [NVIDIA Blackwell GPUs](hardware-specific-guide/nvidia-blackwell-gpus.md)
-* [AMD GPUs](hardware-specific-guide/amd-gpus.md)
-* [Intel Xeon CPUs](hardware-specific-guide/intel-xeon-cpus.md)
-* [NVIDIA Jetson](hardware-specific-guide/nvidia-jetson.md)
-* [Ascend NPUs](hardware-specific-guide/ascend-npus.md)
+* [NVIDIA Blackwell GPUs](nvidia-blackwell-gpus.md)
+* [AMD GPUs](amd-gpus.md)
+* [Intel Xeon CPUs](intel-xeon-cpus.md)
+* [NVIDIA Jetson](nvidia-jetson.md)
+* [Ascend NPUs](ascend-npus.md)
 
 ## Prerequisite
 
 * OS: Linux
 * Python: 3.9 -- 3.13
 
-## Method 1: With pip or uv
-
-It is recommended to use uv for faster installation:
-
-```bash
-pip install --upgrade pip
-pip install uv
-uv pip install "sglang[all]>=0.5.1.post3"
-```
-
-## Method 2: From source
-
-```bash
-# Use the last release branch
-git clone -b v0.5.1.post3 https://github.com/sgl-project/sglang.git
-cd sglang
-
-# Install the python packages
-pip install --upgrade pip
-pip install -e "python[all]"
-```
-
-## Method 3: Using docker
+## Method 1: Using docker
 
 The docker images are available on Docker Hub at [lmsysorg/sglang](https://hub.docker.com/r/lmsysorg/sglang/tags), built from [Dockerfile](https://github.com/sgl-project/sglang/tree/main/docker). Replace `<secret>` below with your huggingface hub [token](https://huggingface.co/docs/hub/en/security-tokens).
 
-```
+{% code overflow="wrap" %}
+```bash
 docker run --gpus all \
     --shm-size 32g \
     -p 30000:30000 \
@@ -51,6 +30,33 @@ docker run --gpus all \
     lmsysorg/sglang:latest \
     python3 -m sglang.launch_server --model-path meta-llama/Llama-3.1-8B-Instruct --host 0.0.0.0 --port 30000
 ```
+{% endcode %}
+
+## Method 2: With pip or uv
+
+It is recommended to use uv for faster installation:
+
+{% code overflow="wrap" %}
+```bash
+pip install --upgrade pip
+pip install uv
+uv pip install "sglang[all]>=0.5.1.post3"
+```
+{% endcode %}
+
+## Method 3: From source
+
+{% code overflow="wrap" %}
+```bash
+# Use the last release branch
+git clone -b v0.5.1.post3 https://github.com/sgl-project/sglang.git
+cd sglang
+
+# Install the python packages
+pip install --upgrade pip
+pip install -e "python[all]"
+```
+{% endcode %}
 
 ## **Quick fixes to common problems**
 
@@ -65,8 +71,4 @@ docker run --gpus all \
   * To reinstall flashinfer locally, use the following command: `pip3 install --upgrade flashinfer-python --force-reinstall --no-deps` and then delete the cache with `rm -rf ~/.cache/flashinfer`.
 * The language frontend operates independently of the backend runtime. You can install the frontend locally without needing a GPU, while the backend can be set up on a GPU-enabled machine. To install the frontend, run `pip install sglang`, and for the backend, use `pip install sglang[srt]`. `srt` is the abbreviation of SGLang runtime.
 
-
-
-
-
-\
+\\
