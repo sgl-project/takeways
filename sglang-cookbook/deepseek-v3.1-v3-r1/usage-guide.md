@@ -14,7 +14,7 @@ python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-r
 {% endcode %}
 
 * You may need to set `NCCL_IB_GID_INDEX` if you are using RoCE, for example: `export NCCL_IB_GID_INDEX=3`.
-* Add
+* [Optional Optimization Options](./#optional-performance-optimization)
 
 ### <mark style="background-color:green;">Serving with 1 x  8 x MI300X</mark>
 
