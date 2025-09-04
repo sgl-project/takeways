@@ -2,8 +2,15 @@
 
 ### <mark style="background-color:green;">Serving with 1 x H100/H200</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -18,6 +25,26 @@ python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
 python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --mem-fraction-static 0.95
 ```
 {% endcode %}
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+SGLang version (0.5.1)
+
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong># gpt-oss-20b
+</strong>python -m sglang.bench_one_batch_server --base-url http://127.0.0.1:30000  --model-path openai/gpt-oss-20b --batch 1 --input-len 1024 --output-len 1024 
+</code></pre>
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td>1/1024/1024</td><td>0.05</td><td>3.29</td><td>22668.19</td><td>304.59</td></tr><tr><td>1/8192/1024</td><td>0.15</td><td>3.39</td><td>55870.90</td><td>295.09</td></tr><tr><td>8/1024/1024</td><td>0.12</td><td>5.92</td><td>65760.01</td><td>1350.83</td></tr><tr><td>8/8192/1024</td><td>1.05</td><td>6.62</td><td>62209.72</td><td>1209.10</td></tr></tbody></table>
+
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong># gpt-oss-120b
+</strong>python -m sglang.bench_one_batch_server --base-url http://127.0.0.1:30000  --model-path openai/gpt-oss-120b --batch 1 --input-len 1024 --output-len 1024 
+</code></pre>
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td>1/1024/1024</td><td>0.07</td><td>4.73</td><td>15803.59</td><td>211.49</td></tr><tr><td>1/8192/1024</td><td>0.23</td><td>4.89</td><td>35004.05</td><td>204.75</td></tr><tr><td>8/1024/1024</td><td>0.21</td><td>10.17</td><td>39132.98</td><td>786.63</td></tr><tr><td>8/8192/1024</td><td>1.76</td><td>11.20</td><td>37178.23</td><td>714.53</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 2 x H100</mark>
 
