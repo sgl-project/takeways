@@ -48,8 +48,15 @@ SGLang version (0.5.1)
 
 ### <mark style="background-color:green;">Serving with 2 x H100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -57,11 +64,26 @@ SGLang version (0.5.1)
 python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --tp 2
 ```
 {% endcode %}
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 1 x B200</mark>
 
-* Install SGLang following [the instruction](../installation/nvidia-blackwell-gpus.md)
-* Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](../installation/nvidia-blackwell-gpus.md)
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -76,8 +98,10 @@ python3 -m sglang.launch_server --model-path openai/gpt-oss-20b
 python3 -m sglang.launch_server --model-path openai/gpt-oss-120b
 ```
 {% endcode %}
+{% endstep %}
 
-#### With Speculative Decoding
+{% step %}
+### With Speculative Decoding
 
 {% code overflow="wrap" %}
 ```bash
@@ -97,6 +121,14 @@ python3 -m sglang.launch_server --model openai/gpt-oss-120b --speculative-algo E
 python3 -m sglang.launch_server --model openai/gpt-oss-120b --speculative-algo EAGLE3 --speculative-draft lmsys/EAGLE3-gpt-oss-120b-bf16 --speculative-num-steps 5 --speculative-eagle-topk 4 --speculative-num-draft-tokens 8 --attention-backend triton --tp 4
 ```
 {% endcode %}
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### Responses API & Built-in Tools
 

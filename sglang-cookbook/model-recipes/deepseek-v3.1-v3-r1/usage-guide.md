@@ -2,10 +2,17 @@
 
 ### <mark style="background-color:green;">Serving with 1 x  8 x H200</mark>
 
-1.  Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+{% stepper %}
+{% step %}
+### Install SGLang
 
-    Note if you are using RDMA and are using docker, `--network host` and `--privileged` are required for `docker run` command.
-2. Serve the model
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+
+Note if you are using RDMA and are using docker, `--network host` and `--privileged` are required for `docker run` command.
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -15,11 +22,26 @@ python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-r
 
 * You may need to set `NCCL_IB_GID_INDEX` if you are using RoCE, for example: `export NCCL_IB_GID_INDEX=3`.
 * [Optional Optimization Options](./#optional-performance-optimization)
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 1 x  8 x MI300X</mark>
 
-1. Install SGLang following [the instruction](../installation/amd-gpus.md)
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](../installation/amd-gpus.md)
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -28,11 +50,26 @@ python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-r
 {% endcode %}
 
 [Running DeepSeek-R1 on a single NDv5 MI300X VM](https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/running-deepseek-r1-on-a-single-ndv5-mi300x-vm/4372726) could also be a good reference.
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x H100/800/20</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 If the first node's IP is `10.0.0.1` , launch the server in both node with below commands
 
@@ -49,11 +86,26 @@ python3 -m sglang.launch_server --model-path deepseek-ai/DeepSeek-V3 --tp 16 --d
 * If the command fails, try setting the `GLOO_SOCKET_IFNAME` parameter. For more information, see [Common Environment Variables](https://pytorch.org/docs/stable/distributed.html#common-environment-variables).
 * If the multi nodes support NVIDIA InfiniBand and encounter hanging issues during startup, consider adding the parameter `export NCCL_IB_GID_INDEX=3`. For more information, see [this](https://github.com/sgl-project/sglang/issues/3516#issuecomment-2668493307).
 * [Optional Optimization Options](./#optional-performance-optimization)
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with Xeon 6980P CPU</mark>
 
-1. Install SGLang following [the instruction](../installation/intel-xeon-cpus.md)
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](../installation/intel-xeon-cpus.md)
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 * For w8a8\_int8
 
@@ -83,11 +135,26 @@ python -m sglang.launch_server                 \
     --max-total-token 65536                    \
     --tp 6
 ```
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x H200</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 If the first node's IP is `10.0.0.1` , launch the server in both node with below commands
 
@@ -102,12 +169,32 @@ python3 -m sglang.launch_server --model-path deepseek-ai/DeepSeek-V3 --tp 16 --d
 {% endcode %}
 
 * [Optional Optimization Options](./#optional-performance-optimization)
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 4 x 8 x A100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
-2. As A100 does not support FP8, we need to convert the [FP8 model checkpoints](https://huggingface.co/deepseek-ai/DeepSeek-V3) to BF16 with [script](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) mentioned [here](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) first
-3. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+{% endstep %}
+
+{% step %}
+### Convert Model Checkpoints
+
+As A100 does not support FP8, we need to convert the [FP8 model checkpoints](https://huggingface.co/deepseek-ai/DeepSeek-V3) to BF16 with [script](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) mentioned [here](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) first
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 If the first node's IP is `10.0.0.1` , and the converted model path is `/path/to/DeepSeek-V3-BF16`, launch the server in 4 nodes with below commands
 
@@ -128,11 +215,26 @@ python3 -m sglang.launch_server --model-path /path/to/DeepSeek-V3-BF16 --tp 32 -
 {% endcode %}
 
 * [Optional Optimization Options](./#optional-performance-optimization)
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 8 x A100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)&#x20;
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)&#x20;
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 {% code overflow="wrap" %}
 ```bash
@@ -151,11 +253,26 @@ python3 -m sglang.launch_server --model cognitivecomputations/DeepSeek-R1-AWQ --
 {% endcode %}
 
 Note that `awq_marlin` only supports `float16` now, which may lead to some precision loss.
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x A100/A800</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 There are block-wise and per-channel quantization methods, weights have already been quantized in these huggingface checkpoint:
 
@@ -179,11 +296,26 @@ python3 -m sglang.launch_server \
 {% endcode %}
 
 * [Optional Optimization Options](./#optional-performance-optimization)
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Serving with 4 x 8 x L40S nodes</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
-2. Serve the model
+{% stepper %}
+{% step %}
+### Install SGLang
+
+Following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+{% endstep %}
+
+{% step %}
+### Serve the model
 
 Running with per-channel quantization model:
 
@@ -211,12 +343,30 @@ python3 -m sglang.launch_server --model meituan/DeepSeek-R1-Channel-INT8 --tp 32
 	--enable-torch-compile --torch-compile-max-bs 32
 ```
 {% endcode %}
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
 
 ### <mark style="background-color:green;">Example: Serving on any cloud or Kubernetes with SkyPilot</mark>
 
+{% stepper %}
+{% step %}
+### Install SkyPilot
+
 SkyPilot helps find cheapest available GPUs across any cloud or existing Kubernetes clusters and launch distributed serving with a single command. See details [here](https://github.com/skypilot-org/skypilot/tree/master/llm/deepseek-r1).
 
-To serve on multiple nodes:
+```bash
+git clone https://github.com/skypilot-org/skypilot.git
+```
+{% endstep %}
+
+{% step %}
+### Serve on multiple nodes
 
 {% code overflow="wrap" %}
 ```bash
@@ -227,3 +377,11 @@ sky launch -c r1 llm/deepseek-r1/deepseek-r1-671B.yaml --retry-until-up
 sky launch -c r1 llm/deepseek-r1/deepseek-r1-671B-A100.yaml --retry-until-up
 ```
 {% endcode %}
+{% endstep %}
+
+{% step %}
+### Benchmark
+
+<table><thead><tr><th width="209.78515625">BS/Input/Output Length</th><th width="109.6328125">TTFT(s)</th><th width="101.75390625">ITL(ms)</th><th>Input Throughput</th><th>Output Throughput</th></tr></thead><tbody><tr><td colspan="5" style="text-align: center;">Benchmark results will be added here</td></tr></tbody></table>
+{% endstep %}
+{% endstepper %}
