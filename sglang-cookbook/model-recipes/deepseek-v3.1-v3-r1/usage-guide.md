@@ -1,8 +1,8 @@
 # Usage Guide
 
-### <mark style="background-color:green;">Serving with 1 x  8 x H200</mark>
+### <mark style="background-color:green;">Serving with 1 x 8 x H200</mark>
 
-1.  Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+1.  Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
 
     Note if you are using RDMA and are using docker, `--network host` and `--privileged` are required for `docker run` command.
 2. Serve the model
@@ -16,7 +16,7 @@ python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-r
 * You may need to set `NCCL_IB_GID_INDEX` if you are using RoCE, for example: `export NCCL_IB_GID_INDEX=3`.
 * [Optional Optimization Options](./#optional-performance-optimization)
 
-### <mark style="background-color:green;">Serving with 1 x  8 x MI300X</mark>
+### <mark style="background-color:green;">Serving with 1 x 8 x MI300X</mark>
 
 1. Install SGLang following [the instruction](../installation/amd-gpus.md)
 2. Serve the model
@@ -31,7 +31,7 @@ python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-r
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x H100/800/20</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
 2. Serve the model
 
 If the first node's IP is `10.0.0.1` , launch the server in both node with below commands
@@ -86,7 +86,7 @@ python -m sglang.launch_server                 \
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x H200</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 2 nodes
 2. Serve the model
 
 If the first node's IP is `10.0.0.1` , launch the server in both node with below commands
@@ -105,7 +105,7 @@ python3 -m sglang.launch_server --model-path deepseek-ai/DeepSeek-V3 --tp 16 --d
 
 ### <mark style="background-color:green;">Serving with 4 x 8 x A100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
 2. As A100 does not support FP8, we need to convert the [FP8 model checkpoints](https://huggingface.co/deepseek-ai/DeepSeek-V3) to BF16 with [script](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) mentioned [here](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/fp8_cast_bf16.py) first
 3. Serve the model
 
@@ -131,7 +131,7 @@ python3 -m sglang.launch_server --model-path /path/to/DeepSeek-V3-BF16 --tp 32 -
 
 ### <mark style="background-color:green;">Serving with 8 x A100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)&#x20;
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
 2. Serve the model
 
 {% code overflow="wrap" %}
@@ -154,7 +154,7 @@ Note that `awq_marlin` only supports `float16` now, which may lead to some preci
 
 ### <mark style="background-color:green;">Serving with 2 x 8 x A100/A800</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
 2. Serve the model
 
 There are block-wise and per-channel quantization methods, weights have already been quantized in these huggingface checkpoint:
@@ -182,7 +182,7 @@ python3 -m sglang.launch_server \
 
 ### <mark style="background-color:green;">Serving with 4 x 8 x L40S nodes</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus) for the 4 nodes
 2. Serve the model
 
 Running with per-channel quantization model:
