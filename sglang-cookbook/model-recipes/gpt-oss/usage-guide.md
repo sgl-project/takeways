@@ -2,7 +2,7 @@
 
 ### <mark style="background-color:green;">Serving with 1 x H100/H200</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
 2. Serve the model
 
 {% code overflow="wrap" %}
@@ -21,7 +21,7 @@ python3 -m sglang.launch_server --model-path openai/gpt-oss-120b --mem-fraction-
 
 ### <mark style="background-color:green;">Serving with 2 x H100</mark>
 
-1. Install SGLang following [the instruction](https://app.gitbook.com/o/TvLfyTxdRQeudJH7e5QW/s/FFtIWT8LEMaYiYzz0p8P/~/changes/11/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
+1. Install SGLang following [the instruction](https://app.gitbook.com/s/FFtIWT8LEMaYiYzz0p8P/sglang-cookbook/installation/nvidia-h-series-a-series-and-rtx-gpus)
 2. Serve the model
 
 {% code overflow="wrap" %}
